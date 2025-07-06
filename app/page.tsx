@@ -37,8 +37,7 @@ export default async function Home() {
                 delay={HEADING_DELAY}
                 className="mx-auto max-w-2xl text-center text-4xl font-medium leading-tight tracking-tighter text-text-primary md:text-6xl md:leading-[64px]"
               >
-                Hey, I&apos;m Braydon! <br /> Welcome to my corner of the
-                internet!
+                Hey, I&apos;m Omar! <br /> Welcome to my corner of the internet!
               </AnimatedText>
             </GridWrapper>
             <GridWrapper>
@@ -48,7 +47,7 @@ export default async function Home() {
                   delay={PARAGRAPH_DELAY}
                   className="leading-8 text-text-secondary"
                 >
-                  I&apos;m a front-end developer with a love for design and a
+                  I&apos;m a software engineer with a love for design and a
                   knack for tinkering. This site is intentionally
                   over-engineered and serves as my playground for experimenting
                   with new ideas and seeing what sticks!

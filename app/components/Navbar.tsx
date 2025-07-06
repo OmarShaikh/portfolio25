@@ -46,7 +46,7 @@ function DesktopNav() {
           <img
             className="h-6 w-6"
             src="/bcoyerlogo_dark.svg"
-            alt="Braydon's Logo"
+            alt="Omar's Logo"
           />
         </Link>
       </div>
@@ -136,11 +136,7 @@ interface NavLogoProps {
 const NavLogo: React.FC<NavLogoProps> = ({ onClickCallback }) => {
   return (
     <Link href="/" onClick={() => onClickCallback(false)} aria-label="Home">
-      <img
-        className="h-8 w-8"
-        src="/bcoyerlogo_dark.svg"
-        alt="Braydon's Logo"
-      />
+      <img className="h-8 w-8" src="/bcoyerlogo_dark.svg" alt="Omar's Logo" />
     </Link>
   );
 };
