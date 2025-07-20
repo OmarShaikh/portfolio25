@@ -15,7 +15,8 @@ const navigationLinks: readonly NavigationLink[] = [
   { name: "Home", link: "/" },
   { name: "About", link: "/about" },
   { name: "Blog", link: "/blog" },
-  { name: "Projects", link: "/projects" },
+  //TODO: Sort projects page
+  // { name: "Projects", link: "/projects" },
   { name: "Speaking", link: "/speaking" },
   { name: "Toolbox", link: "/toolbox" },
 ] as const;
