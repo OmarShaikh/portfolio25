@@ -29,7 +29,7 @@ const footerSections: FooterSection[] = [
       { href: "/toolbox", label: "Toolbox" },
       { href: "/speaking", label: "Speaking" },
       {
-        href: "https://braydoncoyer.lemonsqueezy.com/",
+        href: "https://gumroad.com/discover",
         label: "Products",
         isExternal: true,
       },
