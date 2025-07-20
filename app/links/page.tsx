@@ -35,7 +35,7 @@ export default async function LinksPage() {
             <Button href="/" variant="primary">
               View my full website
             </Button>
-            <Button href="mailto:braydon@coyer.net" variant="secondary">
+            <Button href="mailto:omarkshaikh@gmail.com" variant="secondary">
               Email me
             </Button>
           </div>
