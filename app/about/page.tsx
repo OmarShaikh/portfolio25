@@ -181,17 +181,18 @@ export default function AboutPage() {
                   Life Beyond Code
                 </h2>
                 <p className="mb-6 text-base leading-8 text-text-secondary">
-                  When I met PeggyJean, I knew pretty quickly she was the one.
-                  After proposing, we had grand wedding plans – until COVID
-                  happened. We pivoted (developer joke!) and had a small,
-                  intimate ceremony in 2020 that turned out more perfect than we
-                  could have imagined.
+                  There’s more to life than solving bugs and shipping features.
+                  This space is about the things that shape me beyond the
+                  keyboard — discipline, health, stillness, curiosity, and the
+                  pursuit of meaning. It’s where I explore who I am without a
+                  screen in front of me.
                 </p>
                 <p className="mb-6 text-base leading-8 text-text-secondary">
-                  Family has always been my center, and seeing ours grow has
-                  been life&apos;s greatest joy. Our daughter ElizaJane arrived
-                  in 2021, bringing endless wonder to our days, and little Renny
-                  joined our crew in 2023, completing our circle.
+                  From daily routines to mindsets, from adventure trips to quiet
+                  journaling — this is about designing a life that feels
+                  intentional, not automated. Because what’s the point of
+                  building efficient systems if the operator is burnt out,
+                  distracted, or disconnected?
                 </p>
               </div>
               <div className="hidden lg:block">
@@ -223,17 +224,18 @@ export default function AboutPage() {
                   These Days
                 </h2>
                 <p className="mb-6 text-base leading-8 text-text-secondary">
-                  Currently, I&apos;m leading teams at LogicGate as a Senior
-                  Frontend Engineer where we&apos;re building some pretty
-                  awesome stuff. Speaking at tech conferences has become a
-                  regular part of my year.
+                  I’m deep in the zone building automation systems that think
+                  for themselves — blending AI, no-code tools, and clever design
+                  to help people do more with less. On the side, I’m
+                  experimenting with 3D printing, training AI models for
+                  creative content, and figuring out how to turn ideas into
+                  working prototypes faster.
                 </p>
                 <p className="mb-6 text-base leading-8 text-text-secondary">
                   When I&apos;m not working, you&apos;ll find me on creative
                   coding side projects, writing for my blog, failing
                   spectacularly at games with friends, or—best of all—hanging
-                  out with my family, usually with coffee nearby and dad jokes
-                  at the ready.
+                  out with my family, usually with coffee nearby.
                 </p>
               </div>
               <div className="hidden lg:block">
