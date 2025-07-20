@@ -10,8 +10,8 @@ export function AboutMeBento({ linkTo }: { linkTo?: string }) {
         <div className="text-balance">
           <h2 className="mb-4 text-base font-medium">Learn more about me</h2>
           <p className="mb-2 text-balance pr-1 text-text-secondary md:pr-4">
-            {timeOfDayGreeting} <br />
-            I&apos;m Omar, an experienced software engineer.
+            {timeOfDayGreeting} <br />I build smart systems and dumb ideas —
+            both for fun. Engineer by skill, explorer by default.
           </p>
         </div>
         <div className="relative">

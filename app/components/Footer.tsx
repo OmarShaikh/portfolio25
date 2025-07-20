@@ -74,8 +74,8 @@ export function Footer(): JSX.Element {
                     />
                   </Link>
                   <p className="w-60 leading-5 text-gray-500">
-                    I&apos;m Omar - a senior software engineer, blogger and
-                    public speaker. Thanks for checking out my site!
+                    I&apos;m Omar - Engineer. Tinkerer. Professional “what if”
+                    guy. This site is my digital twin — just less sleepy.
                   </p>
                 </div>
                 <p className="mt-6 text-gray-500">
