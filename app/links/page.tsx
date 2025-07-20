@@ -25,8 +25,8 @@ export default async function LinksPage() {
         <GridWrapper>
           <div className="mx-auto max-w-xl text-center md:mt-8">
             <p className="leading-8 text-text-secondary">
-              I&apos;m a software engineer, team lead, blogger and international
-              public speaker.
+              This is my digital jump gate. From experiments to ideas to vibes —
+              pick a platform and explore.
             </p>
           </div>
         </GridWrapper>
@@ -165,6 +165,124 @@ export default async function LinksPage() {
                     </svg>
                   </div>
                   <p className="mt-3 text-sm text-gray-500">GitHub</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div className="relative mx-auto grid max-w-2xl grid-cols-3 place-items-center justify-items-center pt-6">
+            <a
+              href={siteMetadata.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group no-underline transition-all duration-500 group-hover:-translate-y-3"
+            >
+              <div className="group inline-block text-center">
+                <div className="h-28 w-28 rounded-[20px] border border-border-primary bg-bg-primary p-2 transition-all duration-300 group-hover:-translate-y-3 group-hover:border-indigo-400">
+                  <div
+                    className="grid h-full place-items-center rounded-xl border-2 border-[#A5AEB81F]/10 bg-[#EDEEF0]"
+                    style={{ boxShadow: "0px 2px 1.5px 0px #A5AEB852 inset" }}
+                  >
+                    <svg
+                      className="h-12 w-12 text-indigo-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M21.543 7.539C21.38 6.879 20.85 6.348 20.191 6.186C18.986 5.875 12 5.875 12 5.875C12 5.875 5.014 5.875 3.809 6.186C3.15 6.348 2.62 6.879 2.457 7.539C2.145 8.744 2.145 12 2.145 12C2.145 12 2.145 15.256 2.457 16.461C2.62 17.121 3.15 17.652 3.809 17.814C5.014 18.125 12 18.125 12 18.125C12 18.125 18.986 18.125 20.191 17.814C20.85 17.652 21.38 17.121 21.543 16.461C21.855 15.256 21.855 12 21.855 12C21.855 12 21.855 8.744 21.543 7.539Z"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M9.75 15V9L15.5 12L9.75 15Z"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <p className="mt-3 text-sm text-gray-500">YouTube</p>
+                </div>
+              </div>
+            </a>
+            <a
+              href={siteMetadata.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group no-underline transition-all duration-500 group-hover:-translate-y-3"
+            >
+              <div className="group inline-block text-center">
+                <div className="h-28 w-28 rounded-[20px] border border-border-primary bg-bg-primary p-2 transition-all duration-300 group-hover:-translate-y-3 group-hover:border-indigo-400">
+                  <div
+                    className="grid h-full place-items-center rounded-xl border-2 border-[#A5AEB81F]/10 bg-[#EDEEF0]"
+                    style={{ boxShadow: "0px 2px 1.5px 0px #A5AEB852 inset" }}
+                  >
+                    <svg
+                      className="h-12 w-12 text-indigo-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        x="3"
+                        y="3"
+                        width="18"
+                        height="18"
+                        rx="5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      />
+                      <path
+                        d="M16.5 7.51L16.51 7.49889"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="3.5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      />
+                    </svg>
+                  </div>
+                  <p className="mt-3 text-sm text-gray-500">Instagram</p>
+                </div>
+              </div>
+            </a>
+            <a
+              href={siteMetadata.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group no-underline transition-all duration-500 group-hover:-translate-y-3"
+            >
+              <div className="group inline-block text-center">
+                <div className="h-28 w-28 rounded-[20px] border border-border-primary bg-bg-primary p-2 transition-all duration-300 group-hover:-translate-y-3 group-hover:border-indigo-400">
+                  <div
+                    className="grid h-full place-items-center rounded-xl border-2 border-[#A5AEB81F]/10 bg-[#EDEEF0]"
+                    style={{ boxShadow: "0px 2px 1.5px 0px #A5AEB852 inset" }}
+                  >
+                    <svg
+                      className="h-12 w-12 text-indigo-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 9.75V16.5C9 17.7426 10.0074 18.75 11.25 18.75C12.4926 18.75 13.5 17.7426 13.5 16.5V4.5C15 6 16.5 6.75 18.75 6.75"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <p className="mt-3 text-sm text-gray-500">TikTok</p>
                 </div>
               </div>
             </a>
