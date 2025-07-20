@@ -38,7 +38,7 @@ export default function AboutPage() {
                     <Photo
                       width={140}
                       height={140}
-                      src="/braydon_speaking_photo.jpeg"
+                      src="/omar_speaking_headshot.png"
                       alt="Omar Shayk"
                       direction="left"
                     />
@@ -47,7 +47,7 @@ export default function AboutPage() {
                     <Photo
                       width={140}
                       height={140}
-                      src="/braydon_headshot_1.jpeg"
+                      src="/omar_headshot.png"
                       alt="Omar Shayk"
                       direction="right"
                     />
@@ -56,7 +56,7 @@ export default function AboutPage() {
                     <Photo
                       width={140}
                       height={140}
-                      src="/braydon_headshot_3.jpg"
+                      src="/omar_headshot_2.png"
                       alt="Omar Shayk"
                       direction="left"
                     />
@@ -135,7 +135,7 @@ export default function AboutPage() {
                     <ShadowBox width={188} height={278}></ShadowBox>
                     <img
                       className="absolute left-0 top-0 h-[270px] w-[180px] rotate-[8deg] rounded-lg object-cover shadow"
-                      src="/c3_speaker_head.png"
+                      src="/omar_headshot_3.png"
                       alt="Speaking at C3 Conf!"
                     />
                   </div>
@@ -157,7 +157,7 @@ export default function AboutPage() {
                   <ShadowBox width={188} height={278}></ShadowBox>
                   <img
                     className="absolute left-0 top-0 h-[270px] w-[180px] rotate-[8deg] rounded-lg object-cover shadow"
-                    src="/braydon_headshot_3.jpg"
+                    src="/omar_headshot_3.png"
                     alt="Speaking at C3 Conf!"
                   />
                 </div>
@@ -172,7 +172,7 @@ export default function AboutPage() {
                     <ShadowBox width={188} height={278}></ShadowBox>
                     <img
                       className="absolute left-0 top-0 h-[270px] w-[180px] rotate-[-8deg] rounded-lg object-cover shadow"
-                      src="/braydon_and_pj.jpeg"
+                      src="/content_creation_2.jpg"
                       alt="A headshot"
                     />
                   </div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
                   <ShadowBox width={188} height={278}></ShadowBox>
                   <img
                     className="absolute left-0 top-0 h-[270px] w-[180px] rotate-[-8deg] rounded-lg object-cover shadow"
-                    src="/braydon_and_pj.jpeg"
+                    src="/content_creation_2.jpg"
                     alt="A headshot"
                   />
                 </div>
@@ -214,7 +214,7 @@ export default function AboutPage() {
                     <ShadowBox width={188} height={278}></ShadowBox>
                     <img
                       className="absolute left-0 top-0 h-[270px] w-[180px] rotate-[8deg] rounded-lg object-cover shadow"
-                      src="/braydon_speaking_photo.jpeg"
+                      src="/omar_speaking_headshot_3.png"
                       alt="A headshot"
                     />
                   </div>
@@ -241,7 +241,7 @@ export default function AboutPage() {
                   <ShadowBox width={188} height={278}></ShadowBox>
                   <img
                     className="absolute left-0 top-0 h-[270px] w-[180px] rotate-[8deg] rounded-lg object-cover shadow"
-                    src="/braydon_speaking_photo.jpeg"
+                    src="/omar_speaking_headshot_3.png"
                     alt="A headshot"
                   />
                 </div>

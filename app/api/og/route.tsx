@@ -65,11 +65,13 @@ export async function GET(request: NextRequest) {
             src={imageUrl}
             alt="article background image"
           />
+
+          {/* TODO : Figure out where this is being used  
           <img
             tw="absolute inset-0 -z-10"
             src={`${baseUrl}/braydoncoyer_og_overlay.png`}
             alt="Gradient overlay"
-          />
+          /> */}
 
           <h1 tw="absolute -bottom-12 left-0 pl-22 w-full text-white text-6xl leading-tight max-w-4xl">
             {title}

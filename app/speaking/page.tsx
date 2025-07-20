@@ -110,8 +110,8 @@ export default function SpeakingPage() {
                 <Photo
                   width={270}
                   height={270}
-                  src="/c3_speaker_head.png"
-                  alt="DoorDash hitting it's millionth total order back in 2015."
+                  src="/omar_speaking_headshot.png"
+                  alt="Youtube"
                   direction="right"
                 />
               </span>
@@ -123,8 +123,8 @@ export default function SpeakingPage() {
                 <Photo
                   width={404}
                   height={270}
-                  src="/braydon_commit_your_code.jpeg"
-                  alt="DoorDash hitting it's millionth total order back in 2015."
+                  src="/content_creation_2.jpg"
+                  alt="Content creation portable rig"
                   direction="left"
                 />
               </span>
@@ -136,8 +136,8 @@ export default function SpeakingPage() {
                 <Photo
                   width={180}
                   height={270}
-                  src="/braydon_stir_trek.jpeg"
-                  alt="DoorDash hitting it's millionth total order back in 2015."
+                  src="/omar_headshot_3.png"
+                  alt="Studio image"
                   direction="right"
                 />
               </span>
@@ -172,19 +172,19 @@ export default function SpeakingPage() {
               </p>
               <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3">
                 <VideoCard
-                  title="Build a Devious Web Video Player in 4 Hours"
-                  subtitle="Web Dev Challenge"
-                  url="https://youtu.be/bF32laUxoK0?si=UW3OGEQ4dYVSzhBV"
+                  title="BambuLab A1"
+                  subtitle="Unboxing & Setup"
+                  url="https://youtu.be/9p3TuJ1jr1w?si=IG4ZRTiLzjBc4LrQ"
                   target="_blank"
-                  thumbnailUrl="/web_dev_challenge.jpeg"
+                  thumbnailUrl="/3d_printing_2.jpg"
                   duration={2108}
                 />
                 <VideoCard
-                  title="Homeless to Software Developer! TailwindCSS Usage and Best Practices!"
-                  subtitle="Commit Your Code: Ep9"
-                  url="https://youtu.be/eQsedvVk9sE?si=11dVYMIoHl-R85o4"
+                  title="Exploring Sharjah's Hidden Gems"
+                  subtitle="Used Auto and Spare Parts Market "
+                  url="https://youtu.be/9p3TuJ1jr1w?si=IG4ZRTiLzjBc4LrQ"
                   target="_blank"
-                  thumbnailUrl="/commit_your_code_ep_9.jpeg"
+                  thumbnailUrl="/youtube_2.png"
                   duration={2731}
                 />
               </div>
@@ -250,7 +250,7 @@ export default function SpeakingPage() {
                       <ShadowBox width={200} height={200}></ShadowBox>
                       <img
                         className="absolute left-1 top-2 h-[186px] w-[186px] rotate-[9deg] rounded-lg object-cover shadow"
-                        src="/braydon_headshot_3.jpg"
+                        src="/omar_headshot.png"
                         alt=""
                       />
                     </div>
@@ -259,7 +259,7 @@ export default function SpeakingPage() {
                       <ShadowBox width={200} height={200}></ShadowBox>
                       <img
                         className="absolute left-1 top-2 h-[186px] w-[186px] rotate-[-8deg] rounded-lg object-cover shadow"
-                        src="/braydon_speaking_photo_square.jpg"
+                        src="/omar_headshot_2.png"
                         alt=""
                       />
                     </div>
