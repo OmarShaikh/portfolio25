@@ -12,14 +12,24 @@ type SoftwareDataItem = {
 
 const softwareData: SoftwareDataItem[] = [
   {
-    title: "Raycast",
-    imgSrc: "/raycast_logo.png",
-    link: "https://raycast.com/?via=braydon",
+    title: "Cursor",
+    imgSrc: "/cursor_logo.png",
+    link: "https://www.cursor.so/",
   },
   {
-    title: "Arc",
-    imgSrc: "/arc_logo.png",
-    link: "https://arc.net/",
+    title: "n8n",
+    imgSrc: "/n8n_logo.png",
+    link: "https://n8n.io/",
+  },
+  {
+    title: "Final Cut Pro",
+    imgSrc: "/fcp_logo.png",
+    link: "https://www.apple.com/final-cut-pro/",
+  },
+  {
+    title: "Bambu Studio",
+    imgSrc: "/bambu_studio_logo.png",
+    link: "https://bambulab.com/en/download",
   },
   {
     title: "VSCode",
@@ -27,24 +37,9 @@ const softwareData: SoftwareDataItem[] = [
     link: "https://code.visualstudio.com/",
   },
   {
-    title: "mymind",
-    imgSrc: "/mymind_logo.png",
-    link: "https://mymind.com/",
-  },
-  {
-    title: "Obsidian",
-    imgSrc: "/obsidian_logo.png",
-    link: "https://obsidian.md/",
-  },
-  {
     title: "Notion",
     imgSrc: "/notion_logo.png",
     link: "https://www.notion.so/",
-  },
-  {
-    title: "Tana",
-    imgSrc: "/tana_logo.png",
-    link: "https://try.tana.inc/66bqr1sp5wkb",
   },
   {
     title: "Spotify",
@@ -57,95 +52,128 @@ const softwareData: SoftwareDataItem[] = [
     link: "https://www.figma.com/",
   },
   {
-    title: "Things 3",
-    imgSrc: "/things3_logo.png",
-    link: "https://culturedcode.com/things/",
+    title: "Unraid",
+    imgSrc: "/unraid_logo.png",
+    link: "https://unraid.net/",
   },
   {
-    title: "Fantastical",
-    imgSrc: "/fantastical_logo.png",
-    link: "https://flexibits.com/fantastical",
+    title: "Docker",
+    imgSrc: "/docker_logo.png",
+    link: "https://www.docker.com/",
   },
   {
-    title: "1Password",
-    imgSrc: "/1password_logo.png",
-    link: "https://1password.com/",
+    title: "Immich",
+    imgSrc: "/immich_logo.png",
+    link: "https://immich.app/",
   },
   {
-    title: "Framer",
-    imgSrc: "/framer_logo.png",
-    link: "https://www.framer.com/",
+    title: "Nextcloud",
+    imgSrc: "/nextcloud_logo.png",
+    link: "https://nextcloud.com/",
   },
   {
-    title: "Cleanshot X",
-    imgSrc: "/cleanshotx_logo.png",
-    link: "https://getcleanshot.com/",
-  },
-  {
-    title: "PixelSnap 2",
-    imgSrc: "/pixelsnap2_logo.png",
-    link: "https://getpixelsnap.com/",
-  },
-  {
-    title: "Linear",
-    imgSrc: "/linear_logo.png",
-    link: "https://linear.app/",
+    title: "Home Assistant",
+    imgSrc: "/homeassistant_logo.png",
+    link: "https://www.home-assistant.io/",
   },
 ];
 
 const hardwareData: HardwareDataItem[] = [
   {
-    title: "MacBook Pro (16 inch), 2021",
+    title: "MacBook Air M2",
     description:
-      "10-core CPU, 16-core GPU, 16-core Neural Engine, 32GB unified memory, 2TB SSD storage",
-    link: "https://www.apple.com/shop/buy-mac/macbook-pro/16-inch",
+      "My ultra-slim sidekick with Apple’s M2 magic—blazing fast, featherlight, and ready to tackle anything from editing to endless tabs.",
+    link: "https://www.apple.com/shop/buy-mac/macbook-air",
   },
   {
-    title: "Zoom65 Mechanical Keyboard",
+    title: "Aula F75 Pro Keyboard",
     description:
-      "With a navy blue finish, this 65% custom mechanical keyboard has Oil King linear switches topped with GMK Hennessey keycaps",
-    link: "https://zoom65.com/",
+      "A tactile dream in 75% form—gasket-mounted for that perfect thock, RGB for late-night vibes, and hot-swappable switches to match my mood.",
+    link: "https://www.aulacn.com/",
   },
   {
-    title: "GIGABYTE M27Q-X 27 Monitor",
-    description: "A 240Hz 1440P KVM monitor that I use for work and gaming.",
-    link: "https://www.gigabyte.com/Monitor/M27Q-X-rev-10#kf",
+    title: "Logitech MX Master 3 Mouse",
+    description:
+      "The productivity beast—sculpts to my hand, flies across screens, and scrolls through spreadsheets like it’s on a mission.",
+    link: "https://www.logitech.com/en-us/products/mice/mx-master-3.html",
   },
   {
-    title: "Autonomous ErgoChair 2",
+    title: "Osmo Action 5 Pro Camera",
     description:
-      "A fully adjustable, completely supportive, and super breathable desk chair in a black and white finish. Expensive, but an investment that has been worth it.",
-    link: "https://www.autonomous.ai/office-chairs/ergonomic-chair?option_code=ErgonomicChair-ErgoChairPro_ChairColor.BlackWhite",
+      "My pocket-sized adventure buddy—shoots silky 4K60 footage with rock-steady stabilization, rain or shine.",
+    link: "https://www.dji.com/osmo-action-5-pro",
   },
   {
-    title: "Autonomous SmartDesk DIY Standing Desk",
+    title: "iPhone 15 Pro",
     description:
-      "A standing desk frame in a white finish. Topped with the IKEA Karlby tabletop, the desk measures almost 9’ wide, providing lots of space.",
-    link: "https://www.autonomous.ai/standing-desks/diy-smart-desk-kit?option_code=DiySmartDeskKit-FrameSmartDesk2_DeskFrame.White,Model.Proframe",
+      "A titanium marvel with a camera that turns every moment into a cinematic masterpiece—and yes, it’s as smooth as it looks.",
+    link: "https://www.apple.com/shop/buy-iphone/iphone-15-pro",
   },
   {
-    title: "Wave DX Dynamic Microphone",
+    title: "BenQ 32 Inch 4K Monitor",
     description:
-      "A dynamic mic that captures detail like a condenser without the noise, Wave DX is a remarkable feat of audio engineering.",
-    link: "https://www.elgato.com/us/en/p/wave-dx-dynamic-microphone",
+      "Massive 4K canvas with jaw-dropping clarity—my digital playground for design, editing, and immersive work sessions.",
+    link: "https://www.benq.com/en-us/monitor/designer/pd3200u.html",
   },
   {
-    title: "Stream Deck +",
+    title: "Lenovo 27 Inch 2K Vertical Monitor",
     description:
-      "Iconic Stream Deck tech with customizable LCD keys, dials, and touch strip.",
-    link: "https://www.elgato.com/us/en/p/stream-deck-plus-black",
+      "Vertical mode hero—perfect for towering code, crisp reading, and multitasking like a boss in 1440p glory.",
+    link: "https://www.lenovo.com/us/en/p/accessories-and-software/monitors/office-monitors/t27q-20",
   },
   {
-    title: "Key Light MK.2",
+    title: "Osmo Action 6 Gimbal",
     description:
-      "Ultra-bright and dimmable. Space-saving and built to last. App-controlled and destined to evolve with you.",
-    link: "https://www.elgato.com/us/en/p/key-light",
+      "My secret weapon for buttery-smooth shots—this 3-axis gimbal makes every step look like a cinematic glide.",
+    link: "https://www.dji.com/osmo-mobile-6",
   },
   {
-    title: "HD60 X Capture Card",
+    title: "Custom Built Home Lab",
     description:
-      "HD60 X lets you capture PS5 or Xbox gameplay like a pro. Stream or record high resolution content for audiences on any platform.",
-    link: "https://www.elgato.com/us/en/p/game-capture-hd60-x",
+      "My digital fortress—packed with servers, VMs, and a playground of self-hosted tools where I break and build at will.",
+    link: "#",
+  },
+  {
+    title: "BambuLab A1 with AMS Lite 3D Printer",
+    description:
+      "A speed demon of a printer—multi-color, lightning-fast, and whisper-quiet; it turns imagination into reality overnight.",
+    link: "https://bambulab.com/en/a1",
+  },
+  {
+    title: "DJI Mic Mini",
+    description:
+      "The wireless mic that makes me sound studio-crisp anywhere—tiny, powerful, and always ready for spontaneous shoots.",
+    link: "https://www.dji.com/dji-mic",
+  },
+  {
+    title: "Neewer 660 PRO RGB LED",
+    description:
+      "My go-to light source—dial in any color, set the perfect mood, and shoot like a pro whether it’s day or night.",
+    link: "https://neewer.com/products/neewer-660-rgb-led-video-light",
+  },
+  {
+    title: "Herman Miller Aeron",
+    description:
+      "The throne of ergonomic legends—keeps me comfy through marathon work sessions with breathable mesh and sublime support.",
+    link: "https://www.hermanmiller.com/products/seating/office-chairs/aeron-chair/",
+  },
+  {
+    title: "Sit Stand Desk from Workspace.ae 180x60 cm",
+    description:
+      "The stage for my daily grind—smooth electric lift, minimalist design, and a spacious surface to spread out ideas.",
+    link: "https://workspace.ae/sit-stand-desk",
+  },
+  {
+    title: "Samsung T5 SSD",
+    description:
+      "My pocket-sized speed vault—zips through backups, edits, and file transfers at warp speed with a sleek metal shell.",
+    link: "https://www.samsung.com/portable-ssd/t5/",
+  },
+  {
+    title: "Ray-Ban Meta 054",
+    description:
+      "Classic Ray-Bans reimagined—snap photos, take calls, and share moments hands-free in style that never goes out of fashion.",
+    link: "https://www.ray-ban.com/usa/ray-ban-meta",
   },
 ];
 
