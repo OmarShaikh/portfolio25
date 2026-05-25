@@ -4,60 +4,64 @@ import { Timeline } from "./Timeline";
 const resumeData: ResumeData = {
   experiences: [
     {
-      company: "LogicGate",
+      company: "Confidential",
       period: "2022 - Present",
       positions: [
         {
-          title: "Frontend Developer III",
+          title: "Tactical Systems Integration Engineer",
           description: [
-            "I lead feature development on a team by analyzing requirements, designing solutions, and assist in evolving the frontend chapter of our organization.",
-          ],
-        },
-        {
-          title: "Frontend Developer II",
-          description: [
-            "I joined LogicGate and immediately took charge of feature development on my team while also assisting other frontend developers in the organization.",
-          ],
-        },
-      ],
-    },
-    {
-      company: "Cognizant",
-      period: "2019 - 2021",
-      positions: [
-        {
-          title: "Senior Fullstack Developer",
-          description: [
-            "I designed and developed full-stack RESTful microservices using Netflix OSS, Java, Spring Boot, SQL, Angular, React, and Vue.",
-            "I led development teams, utilizing extreme programming principles such as agile, test-driven development, and paired programming.",
-            "I spearheaded the information architecture and developed a reusable UI component library for healthcare clients.",
-            "I led over 650 developers through a monthly enablement process, training them for client work on the Digital Engineering stack.",
+            "I work on the strategy, planning, deployment, integration, and testing of complex tactical systems across homeland security, defense, and military environments.",
+            "I support Electronic Warfare and defense system deployments involving C2 systems, Counter-UAV systems, border security systems, intercept systems, tactical communication networks, EO/IR systems, and field-based sensor platforms.",
+            "I manage installation, configuration, troubleshooting, and validation of tactical systems across land, marine, and mobile covert setups, ensuring reliable performance in demanding operational environments.",
+            "I design and support mission-critical communication networks using WiFi/Mesh, microwave, fiber, cellular, and SATCOM solutions for field deployments and testing activities.",
+            "I lead test planning, FAT/SAT execution, vendor performance testing, defect tracking, and client demonstrations at military and defense testing facilities.",
+            "I conduct Counter-UAV red team exercises using industrial quadcopters and fixed-wing UAVs to assess sensor detection, tracking, and mitigation effectiveness in real-world scenarios.",
           ],
         },
       ],
     },
     {
-      company: "projekt202",
-      period: "2018 - 2019",
+      company: "neunek",
+      period: "2021 - 2022",
       positions: [
         {
-          title: "UI Developer",
+          title: "Software Engineer",
           description: [
-            "I assisted in developing a reusable UI component library and worked closely with a multi-million dollar airline client to gather requirements.",
-            "My responsibility included developing solutions for enterprise clients worth millions of dollars, using Angular 7 for the frontend.",
+            "I worked as part of a digital transformation team, building software solutions aligned with client business goals and product strategies.",
+            "I analyzed user needs, translated requirements into prototypes, and collaborated with clients, management, and engineering teams to deliver successful projects.",
+            "I designed and developed a sports facility management web application for EXPO 2020, supporting operational workflows and user-facing functionality.",
+            "I built a fitness application with training and diet planning features, focusing on usability, product structure, and responsive interface design.",
+            "I also designed and developed multiple company portfolio websites to showcase business capabilities and improve digital presence.",
           ],
         },
       ],
     },
     {
-      company: "Major 4 Apps",
-      period: "2018 - 2019",
+      company: "Brandie",
+      period: "2020 - 2021",
       positions: [
         {
-          title: "Founder & Developer",
+          title: "Software Engineer",
           description: [
-            "I developed custom applications for clients, designed, developed, tested, and supported mobile applications on iOS and Android platforms.",
-            "My mobile game ranked among the top 200 on the Amazon App Store.",
+            "I developed features for Brandie’s iOS product, helping brands scale word-of-mouth marketing through creator-driven social media campaigns.",
+            "I built and maintained iOS application features using Swift and Xcode, including authentication, user profiles, dashboards, photo sharing, rewards, and store functionality.",
+            "I integrated Meta APIs for Facebook and Instagram, enabling social media workflows and platform connectivity within the product.",
+            "I worked with REST APIs and mobile product flows to support a smooth creator and brand experience across the application.",
+          ],
+        },
+      ],
+    },
+    {
+      company: "LotusDew Wealth and Investment Advisors",
+      period: "2020",
+      positions: [
+        {
+          title: "Web Developer Intern",
+          description: [
+            "I developed a client-facing investment dashboard for a wealth-tech platform, allowing users to view suggestions, save or execute actions, and track investment-related insights.",
+            "I built structured data tables and visual charts to help users understand financial recommendations, performance, and profit-and-loss trends more clearly.",
+            "I rapidly developed an internal web tool for manually labeling images for the company’s AI engine, improving operational efficiency by 95%.",
+            "I optimized the web application for mobile responsiveness, improving usability across different screen sizes and devices.",
           ],
         },
       ],

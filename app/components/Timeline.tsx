@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 interface TimelineProps {
   avatarUrl: string;
@@ -10,22 +10,30 @@ interface TimelineProps {
 
 export function Timeline({ avatarUrl }: TimelineProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [containerHeight, setContainerHeight] = useState(0);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["end 50%", "start 50%"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setContainerHeight(el.offsetHeight);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const avatarY = useTransform(scrollYProgress, [0, 1], [containerHeight, 0]);
 
   return (
     <div ref={containerRef} className="relative h-full w-full">
       <motion.div
         className="absolute -left-0.5 z-10 flex"
-        style={{
-          top: 0,
-          height: "100%",
-          y: useTransform(scrollYProgress, [0, 1], ["100%", "0%"]),
-        }}
+        style={{ top: 0, y: avatarY }}
       >
         <div className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-bg-primary bg-bg-primary shadow-md">
           <Image src={avatarUrl} alt="Profile" fill className="object-cover" />
