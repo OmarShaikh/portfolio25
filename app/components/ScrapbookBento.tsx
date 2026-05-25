@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useClickAnyWhere, useMediaQuery } from "usehooks-ts";
 
@@ -33,11 +33,16 @@ function Sticker({
   const [isModal, setIsModal] = useState<Boolean>(false);
 
   // Set up initial values persisted in state even while dragging
-  const [initialRotation] = useState<number>(getRandomNumberInRange(-15, 15));
-  const [initialY] = useState<number>(
-    getRandomNumberInRange(10, 25) *
-      (index === 0 ? 1 : index % 2 === 0 ? -0.5 : 0.5),
-  );
+  const [initialRotation, setInitialRotation] = useState<number>(0);
+  const [initialY, setInitialY] = useState<number>(0);
+
+  useEffect(() => {
+    setInitialRotation(getRandomNumberInRange(-15, 15));
+    setInitialY(
+      getRandomNumberInRange(10, 25) *
+        (index === 0 ? 1 : index % 2 === 0 ? -0.5 : 0.5),
+    );
+  }, []);
 
   // Handle smaller devices with different behavior
   const matches = useMediaQuery("(max-width: 768px)");
