@@ -1,0 +1,43 @@
+---
+title: "Field-Testing a Wearable AI Recorder: What Survives Contact With Real Life"
+publishedAt: 2026-08-11
+summary: I spent a week using a Plaud recorder as the capture layer for my self-hosted AI assistant — meetings, car rides, late-night voice memos. Here's what worked, what hallucinated, and the pipeline design lessons.
+imageName: plaud_field_test.svg
+categories: ["ai", "hardware"]
+draft: false
+---
+
+The pitch for wearable AI recorders is seductive: wear it, live your life, and every conversation becomes searchable memory with action items extracted. I've been field-testing a Plaud device for a week as the capture layer for my self-hosted AI assistant — including through a genuinely hard test: a two-hour, multi-party, mixed Hindi-and-English business meeting in a noisy office. The verdict is more interesting than the marketing.
+
+## What genuinely impressed me
+
+**Long, messy meetings were reconstructable.** From the raw transcript of that two-hour meeting, my assistant recovered the hard numbers, the commitments each side made, and the sequence of who-promised-what — the material you'd never reconstruct from memory three days later. The recall value of having a faithful transcript of a high-stakes conversation is real and immediate.
+
+**Voice profiles compound.** Label a speaker once in the companion app and every future recording arrives with their name attached to each utterance. For a system whose whole point is knowing *who* said *what*, this is the feature that matters most — and it works, building a growing roster of recognized voices over time.
+
+**Deliberate voice memos are near-perfect input.** Short dictated notes — "remind me to follow up on X", "add this trip to the plan" — extract flawlessly. If you're building any capture pipeline, this genre is free accuracy.
+
+## What you must engineer around
+
+**Media audio becomes phantom people.** Play a YouTube video near the device and the narrator gets transcribed and diarized as a real participant in your life. A naive pipeline would have created a contact profile for a finance YouTuber and stored his on-camera claims as facts about a friend of mine. One recording even produced hallucinated Mandarin and Portuguese segments from background noise, attributed to a real labeled person. Any serious pipeline needs a media-vs-person classifier before extraction.
+
+**The vendor's AI summary hallucinates.** The device's own generated notes invented percentages, thresholds, and deadlines that were never spoken. The raw timestamped transcript was faithful; the summary layer was fiction-prone. My rule now: extraction runs on raw transcripts only, and vendor summaries are treated as untrusted topic hints. If you take one operational rule from this article, take that one.
+
+**Diarization dies in cross-talk.** In noisy multi-party settings, brief bystander exchanges got merged into the wrong speaker's segments, turns were misattributed between participants, and one 19-minute office conversation arrived with no speaker labels at all and 60% of its audio untranscribed. Non-English speech degraded further — Hindi came through with duplicated, vowel-stripped fragments. English-spoken numbers were reliable; figures spoken in Hindi needed confirmation against documents.
+
+**Timestamps are UTC, filenames are local.** A small thing that will silently corrupt any sync watermark you build against the API. Store and compare in UTC, display local — and verify rather than assume, because the two disagree.
+
+## The design lessons
+
+Running a week of transcripts through my assistant produced a pipeline design I wouldn't have gotten from speculation:
+
+1. **Classify genre before extracting.** Deliberate memos, meetings, voice notes from other people, and ambient noise are different genres needing different handling — a memo becomes tasks, a meeting becomes commitments and follow-ups, a contact's voice note is inbound correspondence, and ambient junk should be quarantined with only clean directives salvaged.
+2. **Cross-recording synthesis is where the value is.** Any single transcript is noise-prone. But several recordings from one day, read together, reconstruct the day itself — recurring topics, converging deadlines, a decision timeline nobody stated explicitly in any single conversation. Summarize days, not files.
+3. **Speaker labels are hints, not truth.** Extraction has to hold attribution loosely and cross-check against content — "would this speaker plausibly have said this?" catches most diarization errors.
+4. **Trust arrives per-genre.** I now trust the device completely for dictated memos, mostly for quiet two-person conversations, and only with verification for noisy rooms. That gradient — not a single "is it accurate?" verdict — is the honest answer, and the pipeline encodes it.
+
+## Worth it?
+
+As a standalone gadget: a good recorder with a hallucination-prone summary feature. As a *capture layer for a system that does the intelligence itself*: genuinely valuable, and the only configuration I'd recommend. The device's job is faithful audio and speaker identity; the reasoning belongs to something that knows your contacts, your calendar, and your projects. That division of labor — dumb faithful capture, smart contextual processing — is the actual architecture of an ambient memory system.
+
+One closing note on etiquette, because it matters: I record my own memos freely, but conversations get recorded with the other side's knowledge — the device is visible, and I say so. An ambient-memory system you'd be embarrassed to explain to the people in the room is a system you shouldn't build.

@@ -12,6 +12,46 @@ type SoftwareDataItem = {
 
 const softwareData: SoftwareDataItem[] = [
   {
+    title: "Claude",
+    imgSrc: "/claude_logo.svg",
+    link: "https://claude.com/",
+  },
+  {
+    title: "ChatGPT",
+    imgSrc: "/chatgpt_logo.svg",
+    link: "https://chatgpt.com/",
+  },
+  {
+    title: "Nano Banana",
+    imgSrc: "/nano_banana_logo.svg",
+    link: "https://gemini.google.com/",
+  },
+  {
+    title: "Wispr Flow",
+    imgSrc: "/wisprflow_logo.svg",
+    link: "https://wisprflow.ai/",
+  },
+  {
+    title: "Plaud",
+    imgSrc: "/plaud_logo.svg",
+    link: "https://www.plaud.ai/",
+  },
+  {
+    title: "Obsidian",
+    imgSrc: "/obsidian_logo.png",
+    link: "https://obsidian.md/",
+  },
+  {
+    title: "Tailscale",
+    imgSrc: "/tailscale_logo.svg",
+    link: "https://tailscale.com/",
+  },
+  {
+    title: "PostgreSQL",
+    imgSrc: "/postgresql_logo.svg",
+    link: "https://www.postgresql.org/",
+  },
+  {
     title: "Cursor",
     imgSrc: "/cursor_logo.png",
     link: "https://www.cursor.so/",
@@ -79,6 +119,12 @@ const softwareData: SoftwareDataItem[] = [
 ];
 
 const hardwareData: HardwareDataItem[] = [
+  {
+    title: "Plaud AI Voice Recorder",
+    description:
+      "A credit-card-sized memory prosthetic — records my meetings and voice memos, labels who said what, and feeds it all straight into my AI assistant's brain.",
+    link: "https://www.plaud.ai/",
+  },
   {
     title: "MacBook Air M2",
     description:

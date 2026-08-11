@@ -1,0 +1,54 @@
+---
+title: "An Untested Backup Is a Hypothesis"
+publishedAt: 2026-08-11
+summary: My self-hosted AI assistant holds months of irreplaceable personal memory. War stories from making it actually survivable — silent failures, restore drills, and the discipline that turns backups from a checkbox into a guarantee.
+imageName: restore_drill.svg
+categories: ["engineering", "homelab"]
+draft: false
+---
+
+My self-hosted AI assistant accumulates something genuinely irreplaceable: months of structured personal memory — every contact, commitment, conversation, and document it has ingested. Losing the code would cost a weekend. Losing the data would erase the entire point of the system. So the survivability work isn't a chore around the edges of the project; it *is* the project. Here's what that discipline actually looks like, learned the honest way.
+
+## Silent failure is the default failure
+
+Every data-loss near-miss I've had shared one trait: **nothing looked wrong.**
+
+The worst one: my semantic memory engine ran "successfully" for weeks while storing *nothing*. The embedding API key behind it had no credit, every write failed silently, and my day-one verification had been too shallow to notice. The system chatted happily the whole time — it just wasn't remembering. I found out only when a deliberate ground-truth check (store a fact, restart everything, recall it) came back empty.
+
+Another: a file uploaded to the assistant during an API outage was cached, acknowledged... and never processed. The outage passed, the queue didn't retry, and the file sat in a cache directory as if handled. Now, after any outage, checking for orphaned uploads is a documented step.
+
+And the classic: the server's root disk quietly filled to 97%, at which point databases and services began misbehaving in ways that looked like anything *except* a full disk.
+
+The lesson underneath all three: health must be **verified against ground truth, not inferred from the absence of errors.** My system now runs a health sentinel every six hours that checks cron outcomes, delivery errors, log anomalies, and spend spikes — and stays silent when everything is green, which is exactly why I trust it when it speaks.
+
+## The backup discipline
+
+The setup is deliberately boring: nightly automated backups of everything that matters — the database, the memory engine's volume, configuration, documents — synced encrypted to off-site storage on rotation. Boring is the point. The interesting part is the rule that governs it:
+
+**A backup you haven't restored is a hypothesis, not a backup.**
+
+So there's a quarterly restore drill: take fresh hardware (or a clean VM), run the bootstrap script, restore the latest backup, and then run ground-truth checks from a runbook — real queries that must return real remembered facts. The first drill this summer passed, and the difference in confidence between "backups are running" and "I have personally rebuilt this system from its backups and interrogated its memory" is hard to overstate.
+
+The drill also forces two artifacts into existence that backups alone never produce:
+
+- **A bootstrap script** that can rebuild the entire stack on fresh metal — which meant every undocumented manual tweak had to be captured or it broke the drill.
+- **A runbook** — because 2am-you, restoring in anger, is a different and dumber person than Sunday-afternoon-you doing a drill.
+
+## The payoff arrived early
+
+Recently the server (a VM) hit that 97%-full disk and needed real intervention. Because the restore path was proven, the decision space was calm: worst case, rebuild on new hardware from last night's backup — a rehearsed afternoon, not a catastrophe. (The actual fix was pleasingly lazy: the VM's virtual disk had 28GB sitting unallocated because Ubuntu's installer only assigns half the volume group by default — check `lsblk` before buying disks. Two commands, zero downtime.)
+
+That's the real return on the discipline: not the disaster it someday prevents, but the way every ordinary incident shrinks. When the floor is "restore from last night and lose nothing that matters," everything above the floor is just a scheduling question.
+
+## The transferable checklist
+
+If you run anything self-hosted that accumulates state you'd mourn:
+
+1. Verify writes end-to-end on day one — store, restart, recall. Silence is not success.
+2. Automate nightly backups off-box, encrypted, on rotation.
+3. Write the bootstrap script and the runbook *before* you need them.
+4. Drill a full restore on real hardware at a fixed cadence. Calendar it.
+5. Monitor ground truth, not error logs — and make the monitor silent when green, so its voice means something.
+6. After any outage, go looking for what failed silently. Something did.
+
+None of this is glamorous, and all of it is why I let the system hold things that matter.

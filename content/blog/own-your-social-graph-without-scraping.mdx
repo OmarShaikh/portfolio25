@@ -1,0 +1,39 @@
+---
+title: "Owning Your Social Graph Without Scraping"
+publishedAt: 2026-08-11
+summary: I linked my Instagram followers and following to my personal CRM, classified 900 accounts into topical buckets, and built an unfollow workflow — using only official data exports. No scraping, no API abuse, no account risk.
+imageName: social_graph.svg
+categories: ["ai", "projects"]
+draft: false
+---
+
+I wanted my personal AI assistant to know my social graph: who follows me, whom I follow, and — most usefully — which of those accounts are actual people in my contacts versus brands, creators, and meme pages I accumulated over a decade. The obvious approaches are all bad: Meta locked down the friends/followers APIs years ago, scraping a logged-in session risks the account, and third-party "enrichment" services are a privacy dumpster fire for personal contacts.
+
+The unglamorous approach worked completely: **the official data export.** Instagram's "Download your information" hands you JSON files of your entire graph — followers, following, close friends, even your synced phone contacts. Zero ToS risk, zero scraping infrastructure, refreshed whenever you re-export. Here's the pipeline I built on top of it.
+
+## From export to enriched CRM
+
+The export gives you handles, timestamps, and profile URLs. My assistant's contact database has 1,000+ people with names and phone numbers. The bridge between them is name matching against handles — `@firstname.lastname`-style handles match confidently, and it turns out a surprising share of real-life contacts use them.
+
+The importer is a single idempotent Python script: parse the JSON, tokenize each handle, match against contact name tokens, and split results into three tiers — **strong** (both name tokens present, unambiguous → auto-linked), **review** (partial match → staged for a human), and **none**. The strong tier linked dozens of handles to contacts automatically; the review tier went into a simple dashboard page where I clicked the right candidate per row, and my assistant applied the confirmations. Every linked contact's record now carries their handle, follow-status both directions, and provenance for the match.
+
+Two design details that mattered:
+
+- **The human-review file is a staging log, not a database write.** The dashboard never touches the database; it records my selections to a JSON file, and the assistant applies them through its normal controlled write path. Keeping the "who can write what" rules absolute — even for a convenience feature — is what keeps them rules.
+- **Everything re-syncs from the next export.** Re-running the importer against a fresh export updates the graph; anyone I've unfollowed drops out automatically. The export becomes a quarterly refresh ritual, not a one-off migration.
+
+## Classifying a decade of follows
+
+The more interesting problem: I followed ~1,900 accounts and wanted them segmented — real people I know, creators I learn from, businesses, meme pages — and the non-people bucketed by topic (software, fitness, motorcycles, business) so each topic could migrate to a dedicated interest account, leaving my main account for actual relationships.
+
+Profile bios would make this trivial, but fetching 1,900 profiles is scraping again. So the classifier works from the handle string alone, plus context about my interests, with an LLM doing the reading: `@thecuttingedge.school` is obviously an education business; `@gymshark` is obviously fitness; `@r7mojo` is a coin flip and lands in an "unsure" pile. Four parallel classification agents processed ~900 accounts in minutes. Accuracy on the confident tiers was excellent, the unsure pile was small enough to skim manually, and mutual-follows skipped classification entirely — someone who follows you back is almost certainly a person you know.
+
+The result is a filterable dashboard: every account, its relationship type, its topic, its profile link, and a done-checkbox for working through migrations — open the topic list from the new niche account, follow, unfollow from main, tick.
+
+## Where the line stays
+
+One workflow decision worth stating plainly: the clicking stays human. My assistant builds the lists, but mass-unfollowing by automation is precisely the behavioral pattern platforms detect and punish — and the same caution applies to a fresh account following 100 pages in an hour. The system's job is to reduce a decade of graph cruft to an organized, clickable worklist; the ToS-relevant actions remain slow, human, and boring. (The same principle governs the whole assistant: it drafts everything and sends nothing.)
+
+## The general pattern
+
+Every major platform is legally required to offer data export in most jurisdictions — Instagram, Facebook, LinkedIn, Twitter/X, TikTok. That makes this pipeline general: **export → parse → match against what you already know → enrich your own database → refresh on a cadence.** It's slower than scraping, and it's yours forever — structured, local, and accumulated without ever putting an account or anyone's privacy at risk. For personal-scale data, official exports are the most underrated API that exists.

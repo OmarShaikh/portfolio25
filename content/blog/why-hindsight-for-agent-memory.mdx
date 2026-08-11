@@ -1,0 +1,46 @@
+---
+title: Why I Chose Hindsight for My AI Assistant's Memory
+publishedAt: 2026-08-11
+summary: Agent memory is where most personal-AI projects quietly fail. Why my self-hosted assistant uses Hindsight for semantic memory, what kinds of memory it actually captures, and the honest gotchas from running it in production.
+imageName: hindsight_memory.svg
+categories: ["ai", "engineering"]
+draft: false
+---
+
+My self-hosted AI assistant answers questions like "what did we discuss with the property agent last week?" and "what does my friend think about that collaboration idea?" — months after the conversations happened. That capability comes down to one architectural choice: what to use for memory, and just as importantly, what *not* to use it for.
+
+After researching the self-hostable options seriously (and rejecting several popular ones), I landed on [Hindsight](https://github.com/vectorize-io/hindsight), an open-source memory engine. It's been running in production on my home server for weeks. Here's the reasoning, and the scars.
+
+## First: memory is not one problem
+
+The core mistake I see in agent projects is treating "memory" as a single thing and reaching for a vector database to hold all of it. My system splits memory into three stores with different jobs:
+
+- **PostgreSQL** holds exact facts — dates, amounts, names, service records, commitments. Ask "when was the last oil change?" and you get the row or nothing. A vector store answering that question gives you something *plausible*, which is worse than nothing when the answer is a number.
+- **Hindsight** holds prose — conversations, meeting notes, ideas, observations, the texture of relationships. Things you retrieve by meaning, not by key.
+- **A markdown vault** is a human-readable projection of both — never the source of truth, always legible without an API.
+
+So Hindsight was never asked to be the system of record. It competes only for the semantic layer — and that's exactly the framing in which it wins.
+
+## Why Hindsight specifically
+
+**Retrieval is four-way, not vector-only.** Most memory layers are embeddings plus cosine similarity. Hindsight runs vector similarity, BM25 keyword search, a graph traversal, and temporal search together, then reranks the combined results. In practice this matters constantly: pure vector search is weak on names and exact phrases ("Al Mamsha", "R7") that BM25 nails, and weak on "what happened last Tuesday" that temporal search nails. The measured retrieval accuracy was the best of the self-hostable options I evaluated — and accuracy of recall was my #1 requirement, above features.
+
+**It distinguishes kinds of memory.** Hindsight models what it stores — episodic memories (things that happened), semantic facts (things that are true), and the entities they involve, linked in a graph. When my assistant recalls a person, it's not just fetching similar paragraphs; it's pulling the memories attached to that entity. One shared memory bank serves all my agents, scoped per-agent with metadata.
+
+**Operationally it's one container.** Single Docker container with embedded storage, compose-managed, data in one volume that my nightly encrypted backups capture. For a self-hosted system that must survive hardware failure (mine has passed a real restore drill), that simplicity is a feature, not a limitation.
+
+**What I rejected, and why.** Zep's open-source self-hosting story had effectively closed. Letta wants to *be* the agent framework, and I already had a runtime — I needed a memory provider, not a lock-in. Mem0-style extraction pipelines are lossy by design: they summarize on the way in, and what the summarizer drops is unrecoverable. Hindsight retains the prose and does the intelligence at retrieval time.
+
+## The honest gotchas
+
+Running it for real surfaced things the README won't tell you:
+
+1. **Verify writes end-to-end, on day one.** My first deployment ran "successfully" for weeks with **zero memories stored** — the embedding API key behind it had no credit, failures were silent, and my day-one verification had been too shallow. The lesson is general and painful: for any memory system, ground-truth the loop (store a fact → restart everything → recall it) before you trust it with your life's context.
+2. **Bulk ingestion needs throttling.** Hindsight's worker fails a chunk on the *first* HTTP 429 from the embedding provider — no internal retry. Importing three vehicle manuals (~1,100 chunks) taught me to keep bulk retains under the embedding API's rate limits with a throttled script. Drip-feed daily writes are fine; migrations need care.
+3. **It's only as alive as its embedding key.** The engine depends on an external embeddings API. Budget for it (mine is a small monthly bill), monitor it, and treat "key has credit" as part of system health.
+
+## What this enables
+
+The payoff shows up in ordinary moments. My assistant ingested 858 pages of my old notes, three vehicle manuals, and months of conversations. "What tire pressure does the LX470 manual specify?" — answered with the numbers. "What did we know about that person before today's meeting?" — answered from conversations I'd forgotten having. The memory bank crossed ten thousand nodes without any degradation I can detect.
+
+The deeper point: in a personal AI system, **the accumulated memory is the asset** — the model consuming it is replaceable and improves every year. That's why I'd rather own a boring, backed-up, self-hosted memory engine with the best recall I could measure than rent a smarter-sounding one that holds my life on someone else's servers.

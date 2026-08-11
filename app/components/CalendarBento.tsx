@@ -37,11 +37,9 @@ export function CalendarBento() {
     0,
   ).getDate();
 
-  const bookingLink = `https://cal.com/omarshayk/30min?month=${currentYear}-${(
-    currentDate.getMonth() + 1
-  )
-    .toString()
-    .padStart(2, "0")}`;
+  // No ?month= param: this component renders statically, so a build-time date
+  // freezes into the HTML. Cal.com defaults to the current month anyway.
+  const bookingLink = "https://cal.com/omarshayk/30min";
 
   const renderCalendarDays = () => {
     let days: React.ReactNode[] = [

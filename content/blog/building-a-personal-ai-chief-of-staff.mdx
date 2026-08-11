@@ -1,0 +1,58 @@
+---
+title: Building a Personal AI Chief of Staff — Notes From a Real Engagement
+publishedAt: 2026-08-11
+summary: I run a self-hosted AI chief-of-staff for myself. A friend who runs deal-flow at a family office asked for one. Here's the architecture, the build plan, and the design decisions that actually matter.
+imageName: chief_of_staff_ai.svg
+categories: ["ai", "projects"]
+draft: false
+---
+
+For the past few months I've been running a self-hosted AI system that acts as my chief of staff: it reads my email, briefs me every morning at seven, remembers every commitment I make (and everyone who owes me one), tracks my vehicles, my holdings, and my deal pipeline — and never sends a single word to anyone without my explicit one-tap approval.
+
+Recently a close friend — an entrepreneur at a family office whose life is email triage and evaluating deal opportunities — watched it work and said: *I need this.* This month I sent him the proposal for his own build. This article documents the thinking, because the design decisions transfer to anyone considering an AI system that touches their real life.
+
+## The one rule everything obeys
+
+Nothing leaves the system — no email, no message, no calendar invite — without explicit human approval. Every outbound action renders as a proposal you tap to release.
+
+Crucially, this is **enforced by the software's structure, not by the AI's good behavior**. The approval gateway is deterministic code, not a prompt asking the model to be careful. Every action is logged proposed → approved → executed → result, so there's a full audit trail from day one. If you take one idea from this article, take this one: put the safety property in the architecture, where a bad model output can't remove it.
+
+## Three stores, three jobs
+
+The single most consequential decision was refusing to let one memory system do every job:
+
+1. **PostgreSQL as the system of record.** Dates, amounts, names, deal terms, commitments. The AI reads it freely but writes only through a controlled, logged pathway. A fact is either recorded exactly, or it isn't recorded — no hallucinated bookkeeping.
+2. **Semantic memory** (self-hosted vector store) for everything soft: conversations, context, relationship texture. Retrieved by meaning, so "what did he think about the warehouse deal?" finds the answer even if those words were never used.
+3. **A plain-markdown vault** — an Obsidian-compatible, human-readable projection of everything the system knows. It's a rendered view, never the source of truth. If the whole system vanished tomorrow, that folder alone would still be legible in any text editor.
+
+Why three? Because the failure modes are different. Ask a vector store "when was the last oil change?" and you get something *plausible*. Ask a SQL table and you get the truth or nothing. Exact questions deserve exact storage; texture deserves semantic storage; humans deserve something they can read without an API.
+
+## The part that's actually the investment
+
+Use a hosted AI assistant the normal way and your history accumulates on someone else's servers, in their format, under their terms. You're renting a memory.
+
+This system inverts that. Everything lives on a silent mini-PC at the owner's premises, reachable only over a private encrypted network. The database exports with one command; the vault is just files. The AI model is deliberately the *replaceable* part — models improve every year, and whichever is best, the system points at it and inherits years of structured personal history that no new subscriber can buy. The assistant is just the first thing built on the data; the data is what you're actually accumulating.
+
+## Ship something usable every two weeks
+
+The build cadence I use — proven on my own system and now the template for the client build — is phases of roughly two weeks, each ending with the owner *using* something in their real day, not watching a demo:
+
+1. **Foundation + morning briefing** — machine, private network, memory core, contacts imported, chat channel live. You wake up to a briefing by week two.
+2. **Email, in your voice** — triage, drafted replies tuned to how the person actually writes, and the approval gateway that governs everything after.
+3. **The specialized desks** — for a deal-flow person, that's the opportunity pipeline with a scoring rubric we define together; the exact desk lineup is tuned to how the owner actually spends their week, and it keeps being tuned as the engagement evolves.
+4. **The quiet automations** — follow-up drafting for threads that go silent, scanners over the channels where their kind of opportunity surfaces, all capped and rate-limited.
+
+The ordering is deliberate: the briefing proves the system is alive, email proves it saves hours, and only then do the specialized desks arrive. Trust is built in that order.
+
+## Boring decisions that turned out to matter
+
+- **Flat-rate AI subscriptions over pay-per-token.** I learned this on my own build: one heavy week on per-token billing can cost more than a month of subscriptions. The client build starts on the cost-controlled configuration from day one.
+- **Backups that have actually been restored.** Nightly encrypted off-site backups, plus quarterly restore drills onto real hardware. An untested backup is a hypothesis, not a backup. Mine passed its first drill this summer.
+- **Silence as a feature.** Every scheduled job produces *no output* when nothing needs attention. Ten automations should not feel like ten newsletters.
+- **Corrections propagate.** When the system records something wrong, one chat message fixes all three memory layers. The human correcting the machine is the accuracy feedback loop, so it has to be effortless.
+
+## What's next
+
+The same foundation grows sideways: a wearable meeting recorder whose transcripts become logged commitments automatically (I'm field-testing this on my own system right now — that's an article of its own), a ghostwriter for professional posts with every word approved before publishing, and whatever a family office's deal-flow throws up next. Adding a capability is adding a skill, not rebuilding.
+
+If you're weighing something similar — for yourself or a client — the short version of my advice: own the data, gate every outbound action in code, use boring databases for exact facts, and charge properly even for friends. Free projects die; paid ones get maintained.

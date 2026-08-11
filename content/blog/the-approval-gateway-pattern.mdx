@@ -1,0 +1,42 @@
+---
+title: "The Approval Gateway: Why My AI Assistant Can't Send an Email"
+publishedAt: 2026-08-11
+summary: The most important component in my self-hosted AI assistant is the one that says no. Why every outbound action goes through a deterministic approval gate, and why that lives in code, not in a prompt.
+imageName: approval_gateway.svg
+categories: ["ai", "engineering"]
+draft: false
+---
+
+My AI assistant drafts my emails, proposes calendar events, writes follow-up messages, and manages a deal pipeline. It has done all of this for months and has never once sent anything to anyone. *I* send things — by tapping approve on a proposal it renders to my phone. That distinction is the most important architectural decision in the whole system.
+
+## The rule
+
+Nothing outbound — no email, no message, no calendar invite, no post — executes without explicit human approval. Every action the AI wants to take renders as a Telegram message with the full content and an approve/reject pair. Tap approve, it executes. Tap reject (or ignore it), nothing happens.
+
+The part that matters: **this is enforced by deterministic code, not by the model's instructions.** The gateway is not an LLM. There is no prompt saying "please ask before sending." The execution path for outbound actions physically routes through a component that requires a logged human approval before it will fire. A confused model, a prompt injection buried in an inbound email, a hallucinated "the user already agreed" — none of them can skip the gate, because the gate isn't listening to the model's opinion about whether it should.
+
+## Why not just trust a well-prompted model?
+
+Because the threat model isn't "the AI goes rogue." It's mundane:
+
+- **Injection is real.** My assistant reads inbound email and scraped web content. Untrusted text *will* eventually contain instructions aimed at the model. My system has already blocked real-world injection attempts — including invisible Unicode characters embedded in scraped content. When the reading layer can be lied to, the acting layer can't take its orders from the reading layer.
+- **Models are confidently wrong.** A drafted reply to the wrong thread, a meeting booked with the wrong person — not malice, just error rates. Human review of outbound actions catches the errors that matter most, because outbound is where errors become unrecoverable.
+- **Audit beats vibes.** Every action is logged through its lifecycle: proposed → approved → executed → result. When something looks odd a month later, I can answer "what exactly did the system send, and who approved it?" with a query, not a guess.
+
+## What it feels like in practice
+
+The surprise is how *little* friction it adds. Approvals arrive as one-tap messages with full content visible. A morning briefing surfaces anything pending. Approving a well-drafted email takes two seconds; the drafting was the work, and that's already done. In months of daily use, the gate has never felt like bureaucracy — it feels like being a manager with an extremely fast direct report.
+
+There's also a trust ladder built in: action types can be whitelisted as confidence grows. Calendar proposals to my own sandbox calendar could go automatic tomorrow; email to other humans probably never will. The point is that moving down the ladder is *my* decision, made per action-type, not a model's judgment call made per message.
+
+## The pattern generalizes
+
+If you're building any agent that touches the real world, the transferable design is:
+
+1. **Separate proposing from executing.** The model's job ends at a fully-formed proposal. Execution is a separate, dumb, logged component.
+2. **Put the safety property where the model can't reach it.** Anything enforced by prompt can be un-enforced by input. Anything enforced by code structure can't.
+3. **Log the full lifecycle.** The audit trail costs nothing at write time and is priceless the one time you need it.
+4. **Make approval cheap.** The gate survives only if tapping approve is faster than doing the task yourself. Rich previews and one-tap actions aren't UX polish; they're what makes the safety architecture sustainable.
+5. **Demand honest failure reporting.** When an approved action fails to execute, the system must say so plainly — a gate that swallows failures teaches you to distrust it, and then you route around it, and then you have no gate.
+
+The industry keeps debating how much autonomy agents should have. My answer, after living with one: exactly as much as a deterministic audit trail can account for — which today means drafting everything and sending nothing. The assistant is no less useful for it. It turns out that between "AI that acts for you" and "AI that prepares everything so acting takes one tap," the second is 95% of the value with 5% of the risk.
