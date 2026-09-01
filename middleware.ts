@@ -1,7 +1,14 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { cookieName, isUnlocked } from "./app/onboarding/gate";
 
 export async function middleware(request: NextRequest) {
+  // Passcode gate for client onboarding pages (/onboarding/<slug>/...), unlock page excepted.
+  const [, root, slug, sub] = request.nextUrl.pathname.split("/");
+  if (root === "onboarding" && slug && sub !== "unlock" && !(await isUnlocked(slug, request.cookies.get(cookieName(slug))?.value))) {
+    return NextResponse.redirect(new URL(`/onboarding/${slug}/unlock`, request.url));
+  }
+
   let response = NextResponse.next({
     request: {
       headers: request.headers,
