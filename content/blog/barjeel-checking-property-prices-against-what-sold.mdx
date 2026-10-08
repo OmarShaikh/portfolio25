@@ -1,0 +1,76 @@
+---
+title: "Barjeel \u2014 Checking UAE Property Prices Against What Actually Sold"
+publishedAt: 2026-10-08
+summary: "I was looking at property to invest in and couldn't tell a good asking price from a hopeful one. So I built a tool that pulls listings, compares them with government-recorded sales, and scores every deal from 0 to 100. Here's how it works and what it found."
+imageName: barjeel_cover.svg
+categories: ["projects", "data"]
+draft: false
+---
+
+When I started looking at UAE property as an investment, I hit the problem every buyer hits. Listing sites tell you what sellers *want*. They don't tell you what similar units actually *sold* for, whether a price just dropped, or what the place would really earn as a rental after costs.
+
+Agents have that context in their heads. I didn't. So I built **Barjeel**, a small market-intelligence tool, to answer three questions for any listing:
+
+1. Is this asking price above or below what the market actually paid?
+2. Has anything changed: is it new, did the price drop, has it come back after disappearing?
+3. If I bought it to rent out, what would it really return?
+
+## Where the data comes from
+
+![From listing sites and government sales data to scores and a dashboard](/blog/diagrams/barjeel-pipeline.svg)
+
+- **Property Finder**, for listings for sale and rent across Abu Dhabi and Dubai. The search pages carry the listing data as structured JSON, so the scraper reads that rather than parsing the visible page. It pauses between pages and only asks for what it needs.
+- **Facebook Marketplace**, through a hosted scraper on Apify, filtered to Dubai and to prices over AED 100,000 so I get flats instead of furniture.
+- **Abu Dhabi government sales.** The Abu Dhabi Real Estate Centre (ADREC) publishes a public market dashboard of actual registered transactions. Barjeel reads the same data the dashboard shows: recent sales and price trends going back to 2019. That's the ground truth everything else is measured against.
+- **Dubai government sales** are next. The Dubai Land Department's data is available through Dubai Pulse, but it needs an API key, and getting one is the next step. Until then, Dubai listings are compared with each other instead.
+
+The guiding rule for every source was to be **slow and polite by design**: small pages, a real delay between requests, one session per run, and a backfill that can stop and resume where it left off instead of hammering a server to finish in one go. When a source started pushing back, I paused it rather than finding ways around the block. A tool built on data you're not supposed to take isn't a tool I want to depend on.
+
+## The D-Score: one number for "is this a deal?"
+
+![The D-Score scale, from 25% above the market to 25% below it](/blog/diagrams/barjeel-dscore.svg)
+
+For each listing, Barjeel finds government-recorded sales of the **same property type in the same community**, needs at least three of them, and takes the median sold price per square meter. Then:
+
+> score = 50 + (1 − asking price per sqm ÷ median sold price per sqm) × 200, clamped to 0–100
+
+- **50** means the asking price matches what the market paid.
+- **100** means roughly **25% or more below** recent sales.
+- **0** means roughly **25% or more above** them.
+
+I chose a median, not an average, so one luxury penthouse doesn't drag a whole community's benchmark up. I chose a clamp so the score stays readable: past 25% either way, the exact number matters less than "go look at this" or "ignore it". If a community doesn't have three matching sales, it falls back to the wider area. If there's no government data at all, as in Dubai today, it compares the listing with other listings and says so.
+
+## The rental yield, with the costs left in
+
+The headline yields on listing sites leave out most of the costs. Barjeel estimates the rent from the median of at least three current rental listings for the same community, type and bedroom count, then works it through with assumptions you can change:
+
+- **20%** down payment, **4.5%** interest over **25 years**
+- **7%** in purchase costs (a 4% land registration fee, agent's commission and registration)
+- **25%** of the rent lost to service charges, maintenance and empty months
+
+From that it shows the gross yield, the net yield, the monthly mortgage payment and the **monthly cash flow**, which is the number that tells you whether the property pays for itself.
+
+## What it found
+
+From one snapshot in late September, covering about 420 listings, 718 rentals and roughly 19,500 government-recorded sales across 513 Abu Dhabi communities:
+
+- The **median gross yield was 5.7%**. After costs, the **median net yield was 4.0%**.
+- **71 listings** would have had positive monthly cash flow with a 20% deposit.
+- Only a small share of listings could be scored against real government sales, because many communities don't have three recent matching transactions of the same type. Thin data is the norm, not the exception, and the tool says so instead of inventing a benchmark.
+
+The cash-flow number changed how I looked at the market. A 6% gross yield sounds fine until the mortgage, the fees and a couple of empty months are in the sum.
+
+## How it's built, and why it's so plain
+
+The whole thing is **Python's standard library and one SQLite file**. No framework, no queue, no cloud database. The dashboard is a single HTML page with charts and a map, served by a small Python server. It has nine tabs: overview, market, rental yield, map, signals, leads and a few tools.
+
+That plainness was deliberate. This started as a question I wanted answered, not a product, and every dependency I didn't add is one that can't break while I'm away. The published dashboard is a **read-only snapshot**: the scrape runs at home, then the latest data is deployed. When it needs live writes or scheduled jobs in the cloud, that's when it gets a hosted database, and not before.
+
+Listings get an event history too. A first sighting is **new**, a changed price is a **drop** or **rise**, and a listing that vanishes for two weeks and comes back is **relisted**, which often signals a seller who's getting flexible.
+
+## What's next
+
+- **Dubai government data**, once the API key arrives, so Dubai gets real benchmarks.
+- **Matching the same unit across sites**, because one flat listed by three agents shouldn't count as three listings.
+- **Alerts on Telegram** when something matching a brief drops below the market.
+- Eventually an agent on top of it that works leads for real-estate brokers. That's the bigger idea behind Barjeel. But the scoring had to be right first, because an assistant that confidently pitches a bad deal is worse than no assistant at all.

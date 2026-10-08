@@ -34,6 +34,23 @@ function Table({ data }) {
   );
 }
 
+// Markdown (GFM) tables in posts render through these.
+function MdTable(props) {
+  return (
+    <div className="my-6 overflow-x-auto">
+      <table className="w-full border-collapse text-sm" {...props} />
+    </div>
+  );
+}
+
+function MdTh(props) {
+  return <th className="border-b border-slate-300 px-3 py-2 text-left font-medium text-text-primary" {...props} />;
+}
+
+function MdTd(props) {
+  return <td className="border-b border-slate-200 px-3 py-2 text-text-secondary" {...props} />;
+}
+
 function CustomLink(props) {
   let href = props.href;
 
@@ -459,6 +476,9 @@ const sharedComponents = {
   Warningquote: WarningQuote,
   code: Code,
   Table,
+  table: MdTable,
+  th: MdTh,
+  td: MdTd,
   p: paragraph,
   ol: OrderedList,
   ul: UnorderedList,
