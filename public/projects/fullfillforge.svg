@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a1d2e"/><stop offset="1" stop-color="#1c0e17"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#g)"/>
+<g fill="none" stroke="#F09BC0" stroke-width="2" opacity="0.55"><rect x="800" y="360" width="220" height="22" rx="4"/><rect x="788" y="332" width="244" height="22" rx="4"/><rect x="776" y="304" width="268" height="22" rx="4"/><rect x="764" y="276" width="292" height="22" rx="4"/><rect x="752" y="248" width="316" height="22" rx="4"/><rect x="740" y="220" width="340" height="22" rx="4"/><path d="M900 60 h60 v50 l-30 40 l-30 -40 z"/><line x1="930" y1="150" x2="930" y2="190"/></g>
+<text x="90" y="500" fill="#ffffff" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="56" font-weight="600">FullfillForge</text>
+<text x="90" y="550" fill="#F09BC0" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="26">3D printing on request</text>
+</svg>

@@ -9,18 +9,32 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Commit Your Code Conference Website",
+    title: "AI Chief of Staff systems",
     description:
-      "A web development conference for charity, the Commit Your Code Conference website was designed and built by me using Figma, Next.js and Tailwind CSS.",
-    image: "/projects/commit_your_code_project.jpeg",
-    url: "https://www.commityourcode.com/",
+      "Private AI chief-of-staff systems that run on the owner's own hardware and work from a single chat: email, morning briefings, memory and task desks, with nothing sent without sign-off. Built for myself first, now packaged for entrepreneurs and family offices.",
+    image: "/blog/chief_of_staff_ai.svg",
+    url: "/blog/building-a-personal-ai-chief-of-staff",
   },
   {
-    title: "Pomegradient",
+    title: "Majlis by the Sea",
     description:
-      "Pomegradient is a web-based gradient solution that allows you to find, save and craft gradients with a creative community!",
-    image: "/projects/pomegradient_project.jpeg",
-    url: "https://www.pomegradient.com/",
+      "A members-only club that seats strangers together at curated dinners in Abu Dhabi, Dubai, Riyadh and Doha. I built the platform: the mobile app, the admin tools and a rule-based engine that decides who sits with whom.",
+    image: "/projects/majlis.svg",
+    url: "https://majlisbythesea.com",
+  },
+  {
+    title: "Barjeel",
+    description:
+      "Real-estate market intelligence for the UAE. It collects listings, compares asking prices with government sale records and scores every deal from 0 to 100, with a rental-yield calculator on top.",
+    image: "/projects/barjeel.svg",
+    url: "https://barjeel-sepia.vercel.app",
+  },
+  {
+    title: "FullfillForge",
+    description:
+      "A 3D-print-on-request service: upload a model, get an instant quote and 3D preview, then follow the order through production, quality checks and shipping.",
+    image: "/projects/fullfillforge.svg",
+    url: "https://fullfillforge.com",
   },
 ];
 
@@ -35,7 +49,7 @@ export default function ProjectPage() {
     <div className="relative space-y-16">
       <GridWrapper>
         <h1 className="mx-auto mt-16 max-w-2xl text-balance text-center text-4xl font-medium leading-tight tracking-tighter text-text-primary md:text-6xl md:leading-[64px]">
-          A collection of my favorite works.
+          Things I&apos;ve built.
         </h1>
       </GridWrapper>
 

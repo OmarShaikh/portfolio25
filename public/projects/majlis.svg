@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b2a1a"/><stop offset="1" stop-color="#1a120b"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#g)"/>
+<g fill="none" stroke="#E2B07A" stroke-width="2" opacity="0.55"><circle cx="760" cy="170" r="48"/><circle cx="830" cy="170" r="11"/><circle cx="795.0" cy="230.9" r="11"/><circle cx="725.0" cy="230.9" r="11"/><circle cx="690" cy="170" r="11"/><circle cx="725.0" cy="109.1" r="11"/><circle cx="795.0" cy="109.1" r="11"/><circle cx="980" cy="170" r="48"/><circle cx="1050" cy="170" r="11"/><circle cx="1015.0" cy="230.9" r="11"/><circle cx="945.0" cy="230.9" r="11"/><circle cx="910" cy="170" r="11"/><circle cx="945.0" cy="109.1" r="11"/><circle cx="1015.0" cy="109.1" r="11"/><circle cx="870" cy="330" r="48"/><circle cx="940" cy="330" r="11"/><circle cx="905.0" cy="390.9" r="11"/><circle cx="835.0" cy="390.9" r="11"/><circle cx="800" cy="330" r="11"/><circle cx="835.0" cy="269.1" r="11"/><circle cx="905.0" cy="269.1" r="11"/></g>
+<text x="90" y="500" fill="#ffffff" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="56" font-weight="600">Majlis by the Sea</text>
+<text x="90" y="550" fill="#E2B07A" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="26">Dinner club platform and seating engine</text>
+</svg>
