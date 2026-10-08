@@ -27,12 +27,20 @@ const footerSections: FooterSection[] = [
     title: "Specifics",
     links: [
       { href: "/toolbox", label: "Toolbox" },
+      { href: "/speaking", label: "Speaking" },
+      {
+        href: "https://gumroad.com/discover",
+        label: "Products",
+        isExternal: true,
+      },
       { href: "/community-wall", label: "Community Wall" },
     ],
   },
   {
     title: "Extra",
     links: [
+      { href: "/changelog", label: "Changelog" },
+      { href: "/connections", label: "Connections" },
       { href: "/links", label: "Links" },
     ],
   },

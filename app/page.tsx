@@ -1,9 +1,13 @@
 import { BgGradient } from "./components/BgGradient";
 import { NewsletterSignUp } from "./components/NewsletterSignUp";
+import { ChangelogBento } from "./components/ChangelogBento";
 import { fetchAndSortBlogPosts } from "./lib/utils";
+import { SpeakingBento } from "./components/SpeakingBento";
+import { CommunityWallBento } from "./components/CommunityWallBento";
 import { CalendarBento } from "./components/CalendarBento";
 import { FeaturedBlogCard } from "./components/FeaturedBlogCard";
 import { ToolboxBento } from "./components/ToolboxBento";
+import { ConnectionsBento } from "./components/ConnectionsBento";
 import { AnimatedProfilePicture } from "./components/AnimatedProfilePicture";
 import { AnimatedText } from "./components/AnimatedText";
 import { PhotoGallery } from "./components/PhotoGallery";
@@ -79,16 +83,20 @@ export default async function Home() {
           </div>
 
           <GridWrapper>
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-12">
-              <div className="col-span-1 md:col-span-5">
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-12 lg:grid-rows-[14]">
+              <div className="col-span-1 md:col-span-5 lg:col-span-5 lg:row-span-6">
                 <AboutMeBento linkTo="/about" />
               </div>
 
-              <div className="md:col-span-7">
+              <div className="md:col-span-12 lg:col-span-7 lg:row-span-8">
+                <ConnectionsBento linkTo="/connections" />
+              </div>
+
+              <div className="md:col-span-7 md:row-start-1 lg:col-span-5 lg:row-span-7">
                 <ToolboxBento linkTo="/toolbox" />
               </div>
 
-              <div className="md:col-span-12">
+              <div className="md:col-span-12 lg:col-span-7 lg:row-span-5">
                 <CalendarBento />
               </div>
             </div>
@@ -139,6 +147,33 @@ export default async function Home() {
               </ul>
             </GridWrapper>
           </div>
+        </section>
+
+        {/* My Site Section */}
+        <section className="relative space-y-10 md:space-y-16">
+          {/* <MySitePattern /> */}
+          <div className="space-y-4 text-balance">
+            <GridWrapper>
+              <div className="text-center text-sm font-medium text-indigo-600">
+                <span>My Site</span>
+              </div>
+            </GridWrapper>
+            <GridWrapper>
+              <h2 className="text-center text-3xl font-medium leading-10 tracking-tighter text-text-primary md:mx-auto md:max-w-lg md:text-4xl">
+                My site is a playful sandbox. Explore, experiment, && say hello
+              </h2>
+            </GridWrapper>
+          </div>
+
+          <GridWrapper>
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+              <span className="col-span-1 h-[276px] sm:block md:hidden lg:block">
+                <ChangelogBento />
+              </span>
+              <SpeakingBento />
+              <CommunityWallBento />
+            </div>
+          </GridWrapper>
         </section>
 
         {/* Newsletter Section */}
