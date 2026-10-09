@@ -13,7 +13,7 @@ const projects: Project[] = [
     description:
       "Private AI chief-of-staff systems that run on the owner's own hardware and work from a single chat: email, morning briefings, memory and task desks, with nothing sent without sign-off. Built for myself first, now packaged for entrepreneurs and family offices.",
     image: "/blog/chief_of_staff_ai.svg",
-    url: "/blog/building-a-personal-ai-chief-of-staff",
+    url: "/blog/one-chat-to-run-it-all",
   },
   {
     title: "Majlis by the Sea",
@@ -27,7 +27,14 @@ const projects: Project[] = [
     description:
       "Real-estate market intelligence for the UAE. It collects listings, compares asking prices with government sale records and scores every deal from 0 to 100, with a rental-yield calculator on top.",
     image: "/projects/barjeel.svg",
-    url: "https://barjeel-sepia.vercel.app",
+    url: "/blog/barjeel-checking-property-prices-against-what-sold",
+  },
+  {
+    title: "Home lab",
+    description:
+      "A small home server that holds the whole family's photos and files: three 6 TB drives in RAID 5, Proxmox to keep every service isolated, and Nextcloud, Immich and Time Machine on top.",
+    image: "/projects/homelab.svg",
+    url: "/blog/home-lab-a-small-server-for-the-whole-family",
   },
   {
     title: "FullfillForge",
